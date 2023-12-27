@@ -8,55 +8,18 @@ import React, { useState } from 'react'
 
 function App() {
 
-  const [color, setColor] = useState("light");
-  const [text, setText] = useState("Enable Dark Mode");
-  const [alert, setAlert] = useState(null);
+   const[clock,setClock]=useState(new Date().toLocaleTimeString())
 
-  const showalert = (message, type) => {
-    setAlert({
-      message: message,
-      type: type 
-    })
+   const digitalClock = ()=>{
+    setClock(new Date().toLocaleTimeString())
+   };
 
-  }
-
-  const changeColor = () => {
-    console.log("sueess")
-    if (color === "light") {
-      setColor("dark")
-      document.body.style.backgroundColor = "#4D3436"
-      setText("Disable Dark Mode")
-      showalert("Dark mode has been enabled", "success")
-     
-      setTimeout(() => {
-        showalert("");
-      }, 1500);
-    } else {
-      setColor("light")
-      setText("Enable Dark Mode")
-      document.body.style.backgroundColor = "white"
-      showalert("Dark mode has been disbled", "success")
-      setTimeout(() => {
-        showalert("");
-      }, 1500); 
-
-    } 
-
-  } 
-
- 
-
+   setInterval(digitalClock,1000);
 
   return (
 
     <>
-    <Navbar titles="Text Analyzer" mode={color} toggle={changeColor} Text={text} />
-      <Alert alert={alert} />
-      <div className="container">
-        <Textform heading="Convert Your Text" mode={color} Alert={alert} showAlert={showalert} />
-      </div> 
-
-      
+      <h1> Current Time {clock}</h1>
     </> 
 
   );
