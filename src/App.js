@@ -1,26 +1,50 @@
 import './App.css';
-import Alert from './Components.js/Alert';
-import Clock from './Components.js/Clock';
-import Navbar from './Components.js/Navbar';
-import Textform from './Components.js/Textform';
 import React, { useState } from 'react'
-
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function App() {
 
-   const[clock,setClock]=useState(new Date().toLocaleTimeString())
+  const[count,setCount]=useState(0);
 
-   const digitalClock = ()=>{
-    setClock(new Date().toLocaleTimeString())
-   };
+  const increMent=()=>{
+    setCount(count+1);
+  }
 
-   setInterval(digitalClock,1000);
+  const decreMent=()=>{
+    if(count===0){
+      setCount(0)
+      alert("Zero Limit exist!")
+    }else{
+      setCount(count-1);
+    }
+  }
 
   return (
 
     <>
-      <h1> Current Time {clock}</h1>
-    </> 
+      <div className='main-div'>
+        <div className='box'>
+          <br />
+          <div className='heading'>
+            <h1>Welcome</h1>
+          </div>
+          <br />
+          <div className='count'>
+            <h1>{count}</h1>
+          </div>
+           <div className='count-btn'>
+            <Button className='btn1' onClick={increMent}>
+               <AddIcon/>
+            </Button>
+            <Button className='btn2' onClick={decreMent}>
+              <DeleteIcon/>
+            </Button>
+            </div>
+        </div>
+      </div>
+    </>
 
   );
 }
